@@ -74,5 +74,17 @@ public class SurveyResource {
 	}
 	
 	
+	@RequestMapping(value="/surveys/{surveyId}/questions/{questionId}", method = RequestMethod.DELETE)
+	public ResponseEntity  deleteSurveyQuestion(
+			@PathVariable String surveyId,
+			@PathVariable String questionId) {
+		String deleteResult = surveyService.deleteSurveyQuestion(surveyId,questionId);
+		
+		if(deleteResult.equalsIgnoreCase(questionId)) throw new ResponseStatusException(HttpStatus.NOT_FOUND);	
+		return ResponseEntity.noContent().build();
+		
+	}
+	
+	
 	
 }
