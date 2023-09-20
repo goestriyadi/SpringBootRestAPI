@@ -22,6 +22,18 @@ public class Question {
 	public String getId() {
 		return id;
 	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public void setOptions(List<String> options) {
+		this.options = options;
+	}
+	public void setCorrectAnswer(String correctAnswer) {
+		this.correctAnswer = correctAnswer;
+	}
 	public String getDescription() {
 		return description;
 	}

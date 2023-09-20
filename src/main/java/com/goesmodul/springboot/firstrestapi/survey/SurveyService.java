@@ -5,7 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
-
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -84,6 +85,24 @@ public class SurveyService {
 		if(optionalQuestion.isEmpty()) return null;
 		return optionalQuestion.get();
 		
+	}
+
+
+
+	public String addNewSurveyQuestion(String surveyId, Question question) {
+		List<Question> questions = retrieveAllSurveyQuestions(surveyId);
+		question.setId(generateRandomId());
+		questions.add(question);
+		return question.getId();
+		
+	}
+
+
+
+	private String generateRandomId() {
+		SecureRandom secureRandom = new SecureRandom();
+		String randomId = new BigInteger(32, secureRandom).toString();
+		return randomId;
 	}
 	
 	
